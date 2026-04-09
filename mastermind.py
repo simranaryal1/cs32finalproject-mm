@@ -17,7 +17,7 @@ def compare_guess(secret, guess):
             partial +=1
             secret.unused.remove(ch)
 
-        return full, partial
+    return full, partial
 
 def main():
     print("WELCOME TO MASTERMIND!")
