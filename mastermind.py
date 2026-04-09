@@ -17,8 +17,6 @@ def compare_guess(secret, guess):
             partial +=1
             secret.unused.remove(ch)
 
-        partial -= full
-
         return full, partial
 
 def main():
