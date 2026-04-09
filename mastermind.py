@@ -5,12 +5,15 @@ def compare_guess(secret, guess):
     full = 0
     partial = 0
 
+    secret_unused = []
+    guess_unused = []
+
     for i in range (len(secret)):
         if guess [i] == secret[i]:
             full +=1
 
-    for ch in guess:
-        if ch in secret:
+    for ch in guess_unused:
+        if ch in secret_unused:
             partial +=1
 
         partial -= full
