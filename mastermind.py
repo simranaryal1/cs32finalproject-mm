@@ -15,6 +15,7 @@ def compare_guess(secret, guess):
     for ch in guess_unused:
         if ch in secret_unused:
             partial +=1
+            secret.unused.remove(ch)
 
         partial -= full
 
