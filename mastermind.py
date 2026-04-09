@@ -40,5 +40,7 @@ def main():
             print("You win!")
             break
 
+    print("SECRET:", secret)
+
 if __name__ == "__main__":
     main()
