@@ -1,6 +1,7 @@
-#mastermind.py
+# mastermind.py
 
 import random
+
 def compare_guess(secret, guess):
     full = 0
     partial = 0
@@ -8,37 +9,47 @@ def compare_guess(secret, guess):
     secret_unused = []
     guess_unused = []
 
-    for i in range (len(secret)):
-        if guess [i] == secret[i]:
-            full +=1
+    # First, check for full matches
+    for i in range(len(secret)):
+        if guess[i] == secret[i]:
+            full += 1
+        else:
+            secret_unused.append(secret[i])
+            guess_unused.append(guess[i])
 
+    # Then, check for partial matches
     for ch in guess_unused:
         if ch in secret_unused:
-            partial +=1
-            secret.unused.remove(ch)
+            partial += 1
+            secret_unused.remove(ch)
 
     return full, partial
+
 
 def main():
     print("WELCOME TO MASTERMIND!")
 
     numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-    secret = "".join (random.choice(numbers) for _ in range (4))
+    secret = "".join(random.choice(numbers) for _ in range(4))
+
+    # Use this for testing only:
+    print("SECRET:", secret)
 
     while True:
-        guess = input ("Enter your 4-number guess: ")
+        guess = input("Enter your 4-number guess: ")
 
-        if len(guess) !=4 or not guess.isdigit():
-            print ("Invalid guess, try again")
+        if len(guess) != 4 or not guess.isdigit():
+            print("Invalid guess, try again")
             continue
 
-        full, partial = compare_guess (secret, guess)
+        full, partial = compare_guess(secret, guess)
 
-        print (f"Full: {full}, Partial: {partial}")
+        print(f"Full: {full}, Partial: {partial}")
 
-        if full ==4:
+        if full == 4:
             print("You win!")
             break
+
 
 if __name__ == "__main__":
     main()
