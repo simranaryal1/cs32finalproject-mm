@@ -18,7 +18,7 @@ def main():
     print("WELCOME TO TWO-PLAYER MASTERMIND!")
 
     with create_new_socket() as s:
-        s.connect((HOST, PORT))
+        s.connect(HOST, PORT)
 
         while True:
             guess = player_guess()
