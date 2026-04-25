@@ -40,7 +40,7 @@ def main():
     secret = get_secret_code()
 
     with create_new_socket() as s:
-        s.bind(HOST, PORT)
+        s.bind((HOST, PORT))
         s.listen()
         print("Mastermind server started. Listening on", (HOST, PORT))
 
