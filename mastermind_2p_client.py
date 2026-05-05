@@ -20,8 +20,11 @@ def main():
     with create_new_socket() as s:
         s.connect(HOST, PORT)
 
-        mode = input("Choose mode (easy or normal): ")
-        s.sendall(mode)
+        mode = input("Choose mode (easy/normal): ").lower()
+        difficulty = input("Choose difficulty (regular/hard): ").lower()
+
+        settings = mode + "," + difficulty
+        s.sendall(settings)
 
         while True:
             guess = player_guess()
