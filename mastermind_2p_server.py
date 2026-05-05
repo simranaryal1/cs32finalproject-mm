@@ -48,6 +48,7 @@ def main():
         print("Connected by", addr)
 
         with conn2client:
+            mode = conn2client.recv()
             while True:
                 guess = conn2client.recv()
 
