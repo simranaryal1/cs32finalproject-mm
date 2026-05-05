@@ -21,7 +21,6 @@ def main():
         s.connect(HOST, PORT)
 
         mode = input("Choose mode (easy/normal): ").lower()
-        difficulty = input("Choose difficulty (regular/hard): ").lower()
 
         if difficulty == "hard":
             code_length = 6
