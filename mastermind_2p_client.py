@@ -20,7 +20,7 @@ def main():
     with create_new_socket() as s:
         s.connect(HOST, PORT)
 
-        mode = input("Choose mode: easy or normal")
+        mode = input("Choose mode (easy or normal): ")
         s.sendall(mode)
 
         while True:
