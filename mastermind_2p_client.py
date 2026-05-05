@@ -5,14 +5,14 @@ from socket32 import create_new_socket
 HOST = '127.0.0.1'
 PORT = 65432
 
-def player_guess():
+def player_guess(code_length):
     while True:
-        guess = input("Player 2, enter your 4-number guess: ")
+        guess = input(f"Player 2, enter your {code_length}-number guess: ")
 
-        if len(guess) == 4 and guess.isdigit():
+        if len(guess) == code_length and guess.isdigit():
             return guess
         else:
-            print("Guess must be exactly 4 numbers. Try again.")
+            print(f"Guess must be exactly {code_length} numbers. Try again.")
 
 def main():
     print("WELCOME TO TWO-PLAYER MASTERMIND!")
