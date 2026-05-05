@@ -25,9 +25,10 @@ def main():
 
         settings = mode + "," + difficulty
         s.sendall(settings)
+        difficulty = input("Choose difficulty (regular/hard): ").lower()
 
         while True:
-            guess = player_guess()
+            guess = player_guess(code_length)
 
             s.sendall(guess)
 
