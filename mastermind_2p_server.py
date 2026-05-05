@@ -57,12 +57,24 @@ def main():
 
                 full, partial = compare_guess(secret, guess)
 
+                if mode == "easy":
+                    hint = ""
+
+                    for i in range(len(secret)):
+                        if guess[i] == secret[i]:
+                            hint += secret[i]
+                        else:
+                            hint += "_"
+
+                    message = f"Full: {full}, Partial: {partial}\nHint: {hint}"
+                else:
+                    message = f"Full: {full}, Partial: {partial}"
+
                 if full == 4:
-                    message = f"Full: {full}, Partial: {partial}\nYou guessed the code!"
+                    message += "\nYou guessed the code!"
                     conn2client.sendall(message)
                     break
                 else:
-                    message = f"Full: {full}, Partial: {partial}"
                     conn2client.sendall(message)
 
 if __name__ == "__main__":
