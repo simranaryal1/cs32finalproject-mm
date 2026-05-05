@@ -23,9 +23,13 @@ def main():
         mode = input("Choose mode (easy/normal): ").lower()
         difficulty = input("Choose difficulty (regular/hard): ").lower()
 
+        if difficulty == "hard":
+            code_length = 6
+        else:
+            code_length = 4
+
         settings = mode + "," + difficulty
         s.sendall(settings)
-        difficulty = input("Choose difficulty (regular/hard): ").lower()
 
         while True:
             guess = player_guess(code_length)
