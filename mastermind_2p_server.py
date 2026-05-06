@@ -47,13 +47,38 @@ def main():
         conn2client, addr = s.accept()
         print("Connected by", addr)
 
+        conn2client, addr = s.accept()
+        print("Connected by", addr)
+
         with conn2client:
             mode = conn2client.recv()
+
+            # 👇 ADD THIS PART HERE
+            difficulty = input("Player 1, choose difficulty (regular/hard): ").lower()
+
+            if difficulty == "hard":
+                code_length = 6
+                max_guesses = 15
+            else:
+                code_length = 4
+                max_guesses = 10
+
+            # send code length to client
+            conn2client.sendall(str(code_length))
+
+            # now get secret code
+            secret = get_secret_code(code_length)
+
+            guess_count = 0
+
             while True:
                 guess = conn2client.recv()
 
-                if guess == '':
-                    break
+                    while True:
+                        guess = conn2client.recv()
+
+                        if guess == '':
+                            break
 
                 full, partial = compare_guess(secret, guess)
 
