@@ -1,12 +1,12 @@
 # cs32finalproject-mm
 # Mastermind Game
 
-This project is a Mastermind-style guessing game. The current version includes a two-player client-server mode. Player 1 enters a secret 4-digit code or 6-digit on the server side, and Player 2 guesses the code from the client side. After each guess, the server sends back feedback showing how many digits are fully correct and how many are partially correct.
+This project is a Mastermind-style guessing game. The current version includes a two-player client-server mode. Player 1 enters a secret 4-digit code or 6-digit on the server side, and Player 2 guesses the code from the client side. After each guess, the server sends back feedback showing how many digits are fully correct and how many are partially correct. Game depends on what difficulty level and mode is chosen. 
 
 ## How to Run
 
 Open two terminals. In the first terminal, run: python3 mastermind_2p_server.py
-Enter a 4-digit secret code.
+Enter a 4-digit or 6-digit secret code once mode is chosen.
 
 In the second terminal, run: python3 mastermind_2p_client.py
 Enter 4-digit or 6-digit guesses until the code is guessed correctly or until the total number of guesses is used.
@@ -17,6 +17,8 @@ Enter 4-digit or 6-digit guesses until the code is guessed correctly or until th
 - mastermind_2p_server.py: server side for two-player version
 - mastermind_2p_client.py: client side for two-player version
 - socket32.py: CS32 socket helper library used for networking
+- fpstatusvideo.py: FP Status video
+- fpsubmissionvideo.py: FP Submission video
 
 ## External Contributors
 
