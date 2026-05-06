@@ -46,13 +46,9 @@ def main():
         conn2client, addr = s.accept()
         print("Connected by", addr)
 
-        conn2client, addr = s.accept()
-        print("Connected by", addr)
-
         with conn2client:
             mode = conn2client.recv()
 
-            # 👇 ADD THIS PART HERE
             difficulty = input("Player 1, choose difficulty (regular/hard): ").lower()
 
             if difficulty == "hard":
@@ -62,23 +58,18 @@ def main():
                 code_length = 4
                 max_guesses = 10
 
-            # send code length to client
             conn2client.sendall(str(code_length))
 
-            # now get secret code
             secret = get_secret_code(code_length)
-
             guess_count = 0
 
             while True:
                 guess = conn2client.recv()
 
-                    while True:
-                        guess = conn2client.recv()
+                if guess == '':
+                    break
 
-                        if guess == '':
-                            break
-
+                guess_count += 1
                 full, partial = compare_guess(secret, guess)
 
                 if mode == "easy":
@@ -90,14 +81,20 @@ def main():
                         else:
                             hint += "_"
 
-                    message = f"Full: {full}, Partial: {partial}\nHint: {hint}"
+                    message = f"Guess #{guess_count}/{max_guesses}\nFull: {full}, Partial: {partial}\nHint: {hint}"
                 else:
-                    message = f"Full: {full}, Partial: {partial}"
+                    message = f"Guess #{guess_count}/{max_guesses}\nFull: {full}, Partial: {partial}"
 
-                if full == 4:
+                if full == code_length:
                     message += "\nYou guessed the code!"
                     conn2client.sendall(message)
                     break
+
+                elif guess_count >= max_guesses:
+                    message += f"\nOut of guesses! The code was {secret}"
+                    conn2client.sendall(message)
+                    break
+
                 else:
                     conn2client.sendall(message)
 
