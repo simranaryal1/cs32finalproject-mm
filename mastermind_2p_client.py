@@ -21,14 +21,9 @@ def main():
         s.connect(HOST, PORT)
 
         mode = input("Choose mode (easy/normal): ").lower()
+        s.sendall(mode)
 
-        if difficulty == "hard":
-            code_length = 6
-        else:
-            code_length = 4
-
-        settings = mode + "," + difficulty
-        s.sendall(settings)
+        code_length = int(s.recv())
 
         while True:
             guess = player_guess(code_length)
@@ -38,7 +33,7 @@ def main():
             response = s.recv()
             print(response)
 
-            if "You guessed the code!" in response:
+            if "You guessed the code!" in response or "Out of guesses!" in response:
                 break
 
 if __name__ == "__main__":
