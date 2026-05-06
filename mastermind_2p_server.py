@@ -28,12 +28,14 @@ def compare_guess(secret, guess):
 
 def get_secret_code(code_length):
     while True:
-        secret = input(f"Player 1, enter a {code_length}-number secret code: ")
+        secret = input(f"Player 1, enter a {code_length}-character secret code (numbers or letters): ")
 
-        if len(secret) == code_length and secret.isdigit():
-            return secret
+        if len(secret) != code_length:
+            print(f"Secret code must be exactly {code_length} characters.")
+        elif not secret.isalnum():   # <-- allows letters OR numbers
+            print("Use only letters or numbers.")
         else:
-            print(f"Secret code must be exactly {code_length} numbers. Try again.")
+            return secret
 
 def main():
     print("WELCOME TO TWO-PLAYER MASTERMIND!")

@@ -8,13 +8,10 @@ PORT = 65432
 def player_guess(code_length):
     while True:
         guess = input(f"Player 2, enter your {code_length}-character guess (numbers or letters): ")
-
         if len(guess) != code_length:
             print(f"Guess must be exactly {code_length} characters.")
-
         elif not guess.isalnum():   # able to input letters or numbers
             print("Use only letters or numbers.")
-            
         else:
             return guess
 
