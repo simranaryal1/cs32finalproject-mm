@@ -26,18 +26,17 @@ def compare_guess(secret, guess):
 
     return full, partial
 
-def get_secret_code():
+def get_secret_code(code_length):
     while True:
-        secret = input("Player 1, enter a 4-number secret code: ")
+        secret = input(f"Player 1, enter a {code_length}-number secret code: ")
 
-        if len(secret) == 4 and secret.isdigit():
+        if len(secret) == code_length and secret.isdigit():
             return secret
         else:
-            print("Secret code must be exactly 4 numbers. Try again.")
+            print(f"Secret code must be exactly {code_length} numbers. Try again.")
 
 def main():
     print("WELCOME TO TWO-PLAYER MASTERMIND!")
-    secret = get_secret_code()
 
     with create_new_socket() as s:
         s.bind(HOST, PORT)
