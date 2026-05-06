@@ -7,12 +7,16 @@ PORT = 65432
 
 def player_guess(code_length):
     while True:
-        guess = input(f"Player 2, enter your {code_length}-number guess: ")
+        guess = input(f"Player 2, enter your {code_length}-character guess (numbers or letters): ")
 
-        if len(guess) == code_length and guess.isdigit():
-            return guess
+        if len(guess) != code_length:
+            print(f"Guess must be exactly {code_length} characters.")
+
+        elif not guess.isalnum():   # able to input letters or numbers
+            print("Use only letters or numbers.")
+            
         else:
-            print(f"Guess must be exactly {code_length} numbers. Try again.")
+            return guess
 
 def main():
     print("WELCOME TO TWO-PLAYER MASTERMIND!")
